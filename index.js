@@ -7,6 +7,8 @@ const PORT = process.env.PORT || 5000
 
 app.use(express.json())
 
+app.use("/api/posts", require('./routes/post.router'))
+
 const start = async () => {
     try{
         set('strictQuery', false)
