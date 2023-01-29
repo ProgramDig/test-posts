@@ -1,7 +1,7 @@
-const {Schema} = require('mongoose')
+const {Schema, model} = require('mongoose')
 
 const Post = new Schema({
-    id:{type: Number, require: true, unique: true},
+    id:{type: String, require: true, unique: true},
     title:{type: String, require: true},
     text:{type: String, require: true}
 })

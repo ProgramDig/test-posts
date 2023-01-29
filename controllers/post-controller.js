@@ -1,23 +1,25 @@
+const uuid = require('uuid')
 const Post = require('../models/post-model')
 
 class PostController {
     async getPost(req, res) {
         try {
             const posts = await Post.find()
-            return res.status(200).json()
+            return res.status(200).json(posts)
         } catch (error) {
             console.log(error.message)
-            return res.status(500).json({message: 'Помилка при поверненні списка користувачів.'})
+            return res.status(500).json({message: 'Помилка при поверненні списка постів.'})
         }
     }
     async createPost(req, res) {
         try {
             const {title, text} = req.body
-            const posts = await Post.find()
-            return res.status(200).json()
+            const id = uuid.v4()
+            const post = await Post.create({id, title, text})
+            return res.status(200).json(post)
         } catch (error) {
             console.log(error.message)
-            return res.status(500).json({message: 'Помилка при поверненні списка користувачів.'})
+            return res.status(500).json({message: 'Помилка при створенні поста.'})
         }
     }
     async updatePost(req, res) {
