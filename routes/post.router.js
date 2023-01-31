@@ -5,7 +5,7 @@ const router = new Router()
 
 router.get('/', postController.getPost)
 router.post('/', postValidator,  postController.createPost)
-router.put('/',postValidator, postController.updatePost)
+router.put('/', postValidator, postController.updatePost)
 router.delete('/', postController.deletePost)
 
 module.exports = router
