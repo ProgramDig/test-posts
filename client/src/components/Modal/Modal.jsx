@@ -1,16 +1,17 @@
 import React from 'react';
-// import classes from './Modal.module.sass'
+import classes from './Modal.module.sass'
 
 const Modal = () => {
     return (
         <div>
             <div id="modal1" className="modal">
                 <div className="modal-content">
-                    <h4>Modal Header</h4>
+                    <h4>Оновити пост</h4>
                     <p>A bunch of text</p>
                 </div>
                 <div className="modal-footer">
-                    <a href="#!" className="modal-close waves-effect waves-green btn-flat">Agree</a>
+                    <button className={`btn modal-close waves-effect red darken-1 ${classes.btn}`}>Відміна</button>
+                    <button className={`btn`}>Оновити</button>
                 </div>
             </div>
         </div>
