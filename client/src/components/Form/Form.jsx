@@ -1,14 +1,22 @@
 import {useDispatch} from "react-redux";
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {setPost} from "../../redux/postSlice";
 import {useHttp} from "../../hooks/http.hook";
-import classes from "./Form.module.sass"
+import {useMessage} from "../../hooks/message.hook";
+// import classes from "./Form.module.sass"
+
+const DEFAULT_FORM = {title: '', text:''}
 
 const Form = () => {
+    const message = useMessage()
     const dispatch = useDispatch()
+    const {loading ,request, error, clearError} = useHttp()
+    const [form, setForm] = useState(DEFAULT_FORM)
 
-    const {request} = useHttp()
-    const [form, setForm] = useState({})
+    useEffect(() => {
+        message(error)
+        clearError()
+    },[error, clearError])
 
     const changeHandler = event => {
         setForm({...form, [event.target.name]: event.target.value})
@@ -19,6 +27,7 @@ const Form = () => {
         const post = await request('/api/posts', 'POST', {...form})
         const postDto = {id: post.id, title: post.title, text: post.text}
         dispatch(setPost(postDto))
+        setForm(DEFAULT_FORM)
     }
 
     return (
@@ -32,6 +41,7 @@ const Form = () => {
                             type="text"
                             name="title"
                             className="validate"
+                            value={form.title}
                             onChange={changeHandler}
                         />
                         <label htmlFor="title">Заголовок</label>
@@ -42,12 +52,13 @@ const Form = () => {
                             type="text"
                             name="text"
                             className="validate"
+                            value={form.text}
                             onChange={changeHandler}
                         />
                         <label htmlFor="text">Текст</label>
                     </div>
                 </div>
-                <button className="btn" onClick={clickHandler}>Створити</button>
+                <button disabled={loading} className="btn" onClick={clickHandler}>Створити</button>
             </form>
         </div>
     );

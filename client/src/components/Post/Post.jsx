@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './Post.module.sass'
+// import classes from './Post.module.sass'
 
 const Post = ({title, text}) => {
     return (
