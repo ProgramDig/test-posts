@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react';
 import {setPost} from "../../redux/postSlice";
 import {useHttp} from "../../hooks/http.hook";
 import {useMessage} from "../../hooks/message.hook";
+import Loader from "../Loader/Loader";
 // import classes from "./Form.module.sass"
 
 const DEFAULT_FORM = {title: '', text:''}
@@ -59,6 +60,8 @@ const Form = () => {
                     </div>
                 </div>
                 <button disabled={loading} className="btn" onClick={clickHandler}>Створити</button>
+
+                {loading && <Loader/>}
             </form>
         </div>
     );
