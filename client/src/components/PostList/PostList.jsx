@@ -4,6 +4,7 @@ import Post from "../Post/Post";
 import {useHttp} from "../../hooks/http.hook";
 import {setPosts} from "../../redux/postSlice";
 import {useMessage} from "../../hooks/message.hook";
+import Loader from "../Loader/Loader";
 // import classes from './PostList.module.sass'
 
 const PostList = () => {
@@ -12,10 +13,17 @@ const PostList = () => {
     const postList = useSelector(state => state.posts)
     const {loading, request, error, clearError} = useHttp()
 
+
+    useEffect(() => {
+        if (!postList.length) {
+            clickHandler()
+        }
+    }, [])
+
     useEffect(() => {
         message(error)
         clearError()
-    },[error, clearError])
+    }, [error, clearError])
 
     const clickHandler = async () => {
         try {
@@ -26,7 +34,12 @@ const PostList = () => {
 
     return (
         <div>
-            <button disabled={loading} className="btn" onClick={clickHandler}>Оновити</button>
+            <div>
+                <button disabled={loading} className="btn" onClick={clickHandler}>Оновити</button>
+                {loading && <Loader/>}
+            </div>
+
+
             {postList ? postList.map(({title, text}) => {
                     return (
                         <Post text={text} title={title}/>
