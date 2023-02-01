@@ -22,10 +22,13 @@ const postSlice = createSlice({
         pushPost(state, action) {
             state.posts = state.posts.push(action.payload)
         },
+        removeOnePost(state, action){
+            state.posts = state.posts.filter(post => post.id !== action.payload)
+        },
         removePosts(state) {
             state.posts = DEFAULT_POSTS
         }
     }
 })
-export const {setPost, removePost, setPosts, pushPost, removePosts} = postSlice.actions
+export const {setPost, removePost, removeOnePost, setPosts, pushPost, removePosts} = postSlice.actions
 export default postSlice.reducer

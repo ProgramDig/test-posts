@@ -40,7 +40,7 @@ class PostController {
             if(!post) {
                return res.status(400).json({message: 'Такого поста не існує.'})
             }
-            return res.status(200).json({message: `Пост id: ${id} оновлено.`})
+            return res.status(200).json({message: `Пост id: ${id} оновлено.`, isUpdate: true})
         } catch (error) {
             console.log(error.message)
             return res.status(500).json({message: 'Помилка при створенні поста.'})
@@ -49,11 +49,11 @@ class PostController {
     async deletePost(req, res) {
         try {
             const {id} = req.body
-            const post = await Post.remove({id})
+            const post = await Post.deleteOne({id})
             if(!post) {
                 return res.status(400).json({message: 'Такого поста не існує.'})
             }
-            return res.status(200).json({message: `Пост id: ${id} видалено.`})
+            return res.status(200).json({message: `Пост id: ${id} видалено.`, isDelete: true})
         } catch (error) {
             console.log(error.message)
             return res.status(500).json({message: 'Помилка при поверненні списка користувачів.'})

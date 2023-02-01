@@ -5,7 +5,7 @@ import {useHttp} from "../../hooks/http.hook";
 import {setPosts} from "../../redux/postSlice";
 import {useMessage} from "../../hooks/message.hook";
 import Loader from "../Loader/Loader";
-// import classes from './PostList.module.sass'
+import classes from './PostList.module.sass'
 
 const PostList = () => {
     const message = useMessage()
@@ -35,14 +35,14 @@ const PostList = () => {
     return (
         <div>
             <div>
-                <button disabled={loading} className="btn" onClick={clickHandler}>Оновити</button>
+                <button disabled={loading} className={`btn ${classes.btn}`} onClick={clickHandler}>Оновити</button>
                 {loading && <Loader/>}
             </div>
 
 
-            {postList ? postList.map(({title, text}) => {
+            {postList ? postList.map(({id, title, text}) => {
                     return (
-                        <Post text={text} title={title}/>
+                        <Post key={id} id={id} text={text} title={title}/>
                     )
                 })
                 :
