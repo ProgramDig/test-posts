@@ -3,9 +3,11 @@ import {useDispatch, useSelector} from "react-redux";
 import Post from "../Post/Post";
 import {useHttp} from "../../hooks/http.hook";
 import {setPosts} from "../../redux/postSlice";
+import {useMessage} from "../../hooks/message.hook";
 // import classes from './PostList.module.sass'
 
 const PostList = () => {
+    const message = useMessage()
     const dispatch = useDispatch()
     const postList = useSelector(state => state.posts)
     const {loading, request, error, clearError} = useHttp()
