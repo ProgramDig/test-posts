@@ -1,15 +1,15 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 // import classes from "./NavBar.module.sass"
 
 const NavBar = () => {
     return (
         <nav>
-            <div className="nav-wrapper">
+            <div className="nav-wrapper teal">
                 <a href="#" className="brand-logo">Лого</a>
                 <ul id="nav-mobile" className="right hide-on-med-and-down">
-                    <li><a href="sass.html">Sass</a></li>
-                    <li><a href="badges.html">Components</a></li>
-                    <li><a href="collapsible.html">JavaScript</a></li>
+                    <li><Link to={'/create-post'}>Створити пост</Link></li>
+                    <li><Link to={'/post-list'}>Ліст постів</Link></li>
                 </ul>
             </div>
         </nav>

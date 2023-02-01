@@ -1,13 +1,14 @@
 import 'materialize-css'
-import Form from "./components/Form/Form";
-import PostList from "./components/PostList/PostList";
+import NavBar from "./components/NavBar/NavBar";
+import {useRoutes} from "./hooks/routes.hook";
 
 function App() {
+    const routes = useRoutes()
     return (
         <div>
+            <NavBar/>
             <div className="container">
-                <Form/>
-                <PostList/>
+                {routes}
             </div>
         </div>
     );
