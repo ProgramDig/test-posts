@@ -1,1 +1,2 @@
-# test-posts
+# Test-posts | MERN
+Full stack test project
